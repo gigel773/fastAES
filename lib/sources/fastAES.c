@@ -1,4 +1,4 @@
-#include "../include/fastAES.h"
+#include "fastAES.h"
 #include "wmmintrin.h"
 
 static __m128i encryptionKeys[11];

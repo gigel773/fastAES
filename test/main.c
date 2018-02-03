@@ -2,7 +2,7 @@
 #include <malloc.h>
 #include <zconf.h>
 #include <x86intrin.h>
-#include "../lib/include/fastAES.h"
+#include "fastAES.h"
 
 #define SIZE 100000
 #define MESSAGE_SIZE 1048576
