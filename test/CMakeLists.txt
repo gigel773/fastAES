@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 
 project(perfAnalysis)
 include_directories(${CMAKE_SOURCE_DIR}/lib/include)

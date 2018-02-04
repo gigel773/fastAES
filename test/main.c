@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
-#include <zconf.h>
+#include <limits.h>
 #include <x86intrin.h>
 #include "fastAES.h"
 
