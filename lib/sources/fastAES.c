@@ -15,8 +15,7 @@ static __m128i aes_128_key_expansion(__m128i key, __m128i keyGenerated) {
 }
 
 static inline void ownGenerateEncryptionKeys(signed char *initialKey) {
-    __m128i key = _mm_loadu_si128((const __m128i
-    *) initialKey);
+    __m128i key = _mm_loadu_si128((const __m128i *) initialKey);
 
     encryptionKeys[0] = key;
     encryptionKeys[1] = AES_128_key_exp(encryptionKeys[0], 0x01);
