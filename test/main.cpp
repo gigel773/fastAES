@@ -1,15 +1,18 @@
-#include <stdio.h>
+#include <cstdio>
 #include <malloc.h>
-#include <zconf.h>
+#include <climits>
 #include <x86intrin.h>
+
+extern "C" {
 #include "fastAES.h"
+}
 
 #define SIZE 100000
 #define MESSAGE_SIZE 1048576
 
 int main() {
-    signed char *message = (signed char *) malloc(sizeof(char) * MESSAGE_SIZE);
-    signed char *cipher = (signed char *) malloc(sizeof(char) * MESSAGE_SIZE);
+    auto *message = (signed char *) malloc(sizeof(char) * MESSAGE_SIZE);
+    auto *cipher = (signed char *) malloc(sizeof(char) * MESSAGE_SIZE);
     signed char key[] = {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'};
     unsigned long long starttick = 0, endtick = 0, min = ULONG_MAX, minimal = ULONG_MAX;
     unsigned int stub;

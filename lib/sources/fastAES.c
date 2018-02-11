@@ -15,7 +15,7 @@ static __m128i aes_128_key_expansion(__m128i key, __m128i keyGenerated) {
 }
 
 static inline void ownGenerateEncryptionKeys(signed char *initialKey) {
-    __m128i key = _mm_loadu_si128((const __m128i_u *) initialKey);
+    __m128i key = _mm_loadu_si128((const __m128i *) initialKey);
 
     encryptionKeys[0] = key;
     encryptionKeys[1] = AES_128_key_exp(encryptionKeys[0], 0x01);
@@ -115,13 +115,14 @@ void encrypt(signed char *key, signed char *message, signed char *pDst, int size
     /* Encrypting data */
     for (int i = messageSize >> 4; i != 0; i--) {
         /* Loading data */
-        chunk = _mm_loadu_si128((const __m128i_u *) src);
+        chunk = _mm_loadu_si128((const __m128i *) src);
         chunk = _mm_xor_si128(chunk, encryptionKeys[0]);
         for (int j = 1; j < 10; j++) {
             chunk = _mm_aesenc_si128(chunk, encryptionKeys[j]);
         }
         chunk = _mm_aesenclast_si128(chunk, encryptionKeys[10]);
-        _mm_storeu_si128((__m128i_u *) dst, chunk);
+        _mm_storeu_si128((__m128i
+        *) dst, chunk);
 
         /* Switching pointers */
         dst += 16;
@@ -130,14 +131,14 @@ void encrypt(signed char *key, signed char *message, signed char *pDst, int size
 
     /* Processing tail */
     if (rem) {
-        chunk = _mm_loadu_si128((const __m128i_u *) (src - 16 + rem));
+        chunk = _mm_loadu_si128((const __m128i *) (src - 16 + rem));
         ownShift(&chunk, 16 - rem);
         chunk = _mm_xor_si128(chunk, encryptionKeys[0]);
         for (int j = 1; j < 10; j++) {
             chunk = _mm_aesenc_si128(chunk, encryptionKeys[j]);
         }
         chunk = _mm_aesenclast_si128(chunk, encryptionKeys[10]);
-        _mm_storeu_si128((__m128i_u *) dst, chunk);
+        _mm_storeu_si128((__m128i *) dst, chunk);
     }
 }
 
@@ -159,13 +160,13 @@ void decrypt(signed char *key, signed char *message, signed char *pDst, int size
     /* Decrypting data */
     for (int i = messageSize >> 4; i != 0; i--) {
         /* Loading data */
-        chunk = _mm_loadu_si128((const __m128i_u *) src);
+        chunk = _mm_loadu_si128((const __m128i *) src);
         chunk = _mm_xor_si128(chunk, decryptionKeys[0]);
         for (int j = 1; j < 10; j++) {
             chunk = _mm_aesdec_si128(chunk, decryptionKeys[j]);
         }
         chunk = _mm_aesdeclast_si128(chunk, encryptionKeys[0]);
-        _mm_storeu_si128((__m128i_u *) dst, chunk);
+        _mm_storeu_si128((__m128i *) dst, chunk);
 
         /* Switching pointers */
         dst += 16;
@@ -174,13 +175,13 @@ void decrypt(signed char *key, signed char *message, signed char *pDst, int size
 
     /* Processing tail */
     if (rem) {
-        chunk = _mm_loadu_si128((const __m128i_u *) (src - 16 + rem));
+        chunk = _mm_loadu_si128((const __m128i *) (src - 16 + rem));
         ownShift(&chunk, 16 - rem);
         chunk = _mm_xor_si128(chunk, decryptionKeys[0]);
         for (int j = 1; j < 10; j++) {
             chunk = _mm_aesdec_si128(chunk, decryptionKeys[j]);
         }
         chunk = _mm_aesdeclast_si128(chunk, encryptionKeys[0]);
-        _mm_storeu_si128((__m128i_u *) dst, chunk);
+        _mm_storeu_si128((__m128i *) dst, chunk);
     }
 }
