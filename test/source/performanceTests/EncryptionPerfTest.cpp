@@ -1,5 +1,5 @@
 #include <x86intrin.h>
-#include "EncryptionTest.h"
+#include "EncryptionPerfTest.h"
 
 EncryptionTest::EncryptionTest(signed char *key, TestFunction function)
         : IPerformanceTest(function),
@@ -45,6 +45,5 @@ void EncryptionTest::start() {
         delete pDst;
         delete pMessage;
     });
-    // test()
     after();
 }
