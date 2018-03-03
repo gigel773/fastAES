@@ -13,7 +13,7 @@ extern "C" {
 static signed char key[] = {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'};
 
 int main() {
-    // EncryptionPerfTest(key, encrypt).start();
+    EncryptionPerfTest(key, encrypt).start();
     EncryptionAlgTest(encrypt, decrypt).start();
 
 //    std::for_each(algorithmicTests.begin(), algorithmicTests.end(), [](ITest &test) {

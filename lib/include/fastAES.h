@@ -21,4 +21,12 @@ status encrypt(signed char *key, signed char *message, signed char *pDst, int si
  */
 status decrypt(signed char *key, signed char *message, signed char *pDst, int size);
 
+/**
+ *
+ * @param pSrc
+ * @param pDst
+ * @return
+ */
+status padWithZeros(const signed char *pSrc, signed char *pDst, srcDstLength lengths);
+
 #endif //ENCRYPTOR_INTERNAL_H
