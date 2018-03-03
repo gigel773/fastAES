@@ -7,11 +7,16 @@
 #include <algorithm>
 #include <functional>
 #include "IPerformanceTest.h"
-#include <Tests.h>
 
-class EncryptionPerfTest : IPerformanceTest<void, signed char *, signed char *, signed char *, int> {
+extern "C" {
+#include <fastAES.h>
+};
+
+const std::string PERF_TEST_OUTPUT_FILE_NAME = "./ps_tests_results.csv";
+
+class EncryptionPerfTest : public IPerformanceTest<int, const signed char *, signed char *, signed char *, int> {
 public:
-    EncryptionPerfTest(signed char *key, TestFunction function);
+    EncryptionPerfTest();
 
     void start() override;
 
@@ -20,9 +25,7 @@ private:
 
     void after() override {};
 
-    signed char *m_key;
+    const signed char m_key[16] = {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'};
 };
-
-// REG_PERF_TEST(EncryptionPerfTest, encrypt);
 
 #endif //FASTAESMODULE_ENCRYPTIONTEST_H

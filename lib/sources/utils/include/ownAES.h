@@ -9,7 +9,7 @@
  * @param initialKey
  * @param encryptionKeys
  */
-void ownGenerateEncryptionKeys(signed char *initialKey, __m128i *encryptionKeys);
+void ownGenerateEncryptionKeys(const signed char *initialKey, __m128i *encryptionKeys);
 
 /**
  *

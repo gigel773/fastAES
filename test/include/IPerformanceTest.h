@@ -6,7 +6,7 @@
 #include <functional>
 
 template<class Ret, class ...Params>
-class IPerformanceTest : ITest {
+class IPerformanceTest : public ITest {
 public:
     using TestFunction = std::function<Ret(Params...)>;
 

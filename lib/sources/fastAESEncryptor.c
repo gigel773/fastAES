@@ -4,7 +4,7 @@
 #include <wmmintrin.h>
 #include <ownAES.h>
 
-status encrypt(signed char *key, signed char *message, signed char *pDst, int size) {
+status encrypt(const signed char *key, signed char *message, signed char *pDst, int size) {
     /* Validating parameters */
     CHECK_PTR_RET(key);
     CHECK_PTR_RET(message);
@@ -17,12 +17,10 @@ status encrypt(signed char *key, signed char *message, signed char *pDst, int si
     __m128i encryptionKeys[11];
 
     /* Initializing memory */
-    signed char *cKey = key;
-    signed char *cMessage = message;
     signed char *dst = pDst;
-    signed char *src = cMessage;
+    signed char *src = message;
 
-    ownGenerateEncryptionKeys(cKey, encryptionKeys);
+    ownGenerateEncryptionKeys(key, encryptionKeys);
 
     /* Encrypting data */
     for (int i = messageSize >> 4; i != 0; i--, src += 16, dst += 16) {

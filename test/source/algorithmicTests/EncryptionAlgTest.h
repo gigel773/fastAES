@@ -5,10 +5,14 @@
 #include <IAlgorithmicTest.h>
 #include <iostream>
 
-class EncryptionAlgTest : IAlgorithmicTest<void, signed char *, signed char *, signed char *, int> {
+extern "C" {
+#include <fastAES.h>
+};
+
+class EncryptionAlgTest : public IAlgorithmicTest<int, const signed char *, signed char *, signed char *, int> {
 public:
 
-    explicit EncryptionAlgTest(const TestFunction &m_enc_function, const TestFunction &m_dec_function);
+    explicit EncryptionAlgTest();
 
     void start() override;
 

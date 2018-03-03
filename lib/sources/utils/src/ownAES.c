@@ -9,7 +9,7 @@ static inline __m128i aes_128_key_expansion(__m128i key, __m128i keyGenerated) {
     return _mm_xor_si128(key, keyGenerated);
 }
 
-void ownGenerateEncryptionKeys(signed char *initialKey, __m128i *encryptionKeys) {
+void ownGenerateEncryptionKeys(const signed char *initialKey, __m128i *encryptionKeys) {
     __m128i key = _mm_loadu_si128((const __m128i *) initialKey);
 
     encryptionKeys[0] = key;

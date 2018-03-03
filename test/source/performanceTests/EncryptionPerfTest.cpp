@@ -1,15 +1,19 @@
 #include <x86intrin.h>
+#include <iostream>
 #include "EncryptionPerfTest.h"
+#include <fstream>
 
-EncryptionPerfTest::EncryptionPerfTest(signed char *key, TestFunction function)
-        : IPerformanceTest(function),
-          m_key(key) {
+EncryptionPerfTest::EncryptionPerfTest() : IPerformanceTest(encrypt) {
     m_lengths = std::vector<int>(8);
     static int i = 8;
     std::generate(m_lengths.begin(), m_lengths.end(), [] {
         i *= 2;
         return i;
     });
+    std::ofstream logs;
+    logs.open(PERF_TEST_OUTPUT_FILE_NAME, std::ios::app);
+    logs << "Function name,Length,CPE" << std::endl;
+    logs.close();
 }
 
 void EncryptionPerfTest::before() {
@@ -42,9 +46,12 @@ void EncryptionPerfTest::start() {
             if (min > m_endTick) min = m_endTick;
         }
 
-        /*
-         * Here's empty place to write results to file
-         * */
+        std::ofstream logs;
+        logs.open(PERF_TEST_OUTPUT_FILE_NAME, std::ios::app);
+
+        logs << "encrypt," << length << ',' << (double) min / (double) MAIN_CYCLE / (double) CYCLE << std::endl;
+
+        logs.close();
 
         /* Finalizing */
         delete pDst;

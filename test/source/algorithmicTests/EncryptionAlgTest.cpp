@@ -44,15 +44,15 @@ void EncryptionAlgTest::after() {
 
 }
 
-EncryptionAlgTest::EncryptionAlgTest(const IAlgorithmicTest::TestFunction &m_enc_function,
-                                     const IAlgorithmicTest::TestFunction &m_dec_function) : IAlgorithmicTest(
-        m_enc_function, m_dec_function) {
+EncryptionAlgTest::EncryptionAlgTest() : IAlgorithmicTest(encrypt, decrypt) {
     m_lengths = std::vector<int>(8);
     static int i = 8;
     std::generate(m_lengths.begin(), m_lengths.end(), [] {
         i *= 2;
         return i;
     });
+
+
 }
 
 

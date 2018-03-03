@@ -2,7 +2,7 @@
 #include <fastAES.h>
 #include <ownAES.h>
 
-status decrypt(signed char *key, signed char *message, signed char *pDst, int size) {
+status decrypt(const signed char *key, signed char *message, signed char *pDst, int size) {
     /* Validating parameters */
     CHECK_PTR_RET(key);
     CHECK_PTR_RET(message);
@@ -16,12 +16,10 @@ status decrypt(signed char *key, signed char *message, signed char *pDst, int si
     __m128i decryptionKeys[10];
 
     /* Initializing memory */
-    signed char *cKey = key;
-    signed char *cMessage = message;
     signed char *dst = pDst;
-    signed char *src = cMessage;
+    signed char *src = message;
 
-    ownGenerateEncryptionKeys(cKey, encryptionKeys);
+    ownGenerateEncryptionKeys(key, encryptionKeys);
     ownGenerateDecryptionKeys(encryptionKeys, decryptionKeys);
 
     /* Decrypting data */

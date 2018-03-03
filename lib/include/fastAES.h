@@ -10,7 +10,7 @@
  * @param pDst
  * @param size
  */
-status encrypt(signed char *key, signed char *message, signed char *pDst, int size);
+status encrypt(const signed char *key, signed char *message, signed char *pDst, int size);
 
 /**
  *
@@ -19,7 +19,7 @@ status encrypt(signed char *key, signed char *message, signed char *pDst, int si
  * @param pDst
  * @param size
  */
-status decrypt(signed char *key, signed char *message, signed char *pDst, int size);
+status decrypt(const signed char *key, signed char *message, signed char *pDst, int size);
 
 /**
  *
