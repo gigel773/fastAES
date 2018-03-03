@@ -14,8 +14,8 @@ add_executable(perfAnalysis main.cpp
         source/algorithmic_tests/encryption_algorithmic_test.hpp include/test_suite.hpp)
 
 if (CMAKE_BUILD_TYPE MATCHES DEBUG)
-    target_link_libraries(perfAnalysis ${CMAKE_SOURCE_DIR}/cmake-build-debug/lib/libfastAES.a)
+    target_link_libraries(perfAnalysis ${CMAKE_SOURCE_DIR}/debug/lib/libfastAES.a)
 ELSE ()
-    target_link_libraries(perfAnalysis ${CMAKE_SOURCE_DIR}/cmake-build-release/lib/libfastAES.a)
+    target_link_libraries(perfAnalysis ${CMAKE_SOURCE_DIR}/release/lib/libfastAES.a)
 ENDIF ()
 

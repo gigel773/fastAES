@@ -1,0 +1,19 @@
+cmake_minimum_required(VERSION 3.5)
+
+project(javaWrapper)
+
+include_directories(include $ENV{JNI_INCLUDE_DIRS})
+if (WIN32)
+    MESSAGE("Windows defined")
+    include_directories($ENV{JNI_INCLUDE_DIRS}/win32)
+endif (WIN32)
+if (UNIX)
+    MESSAGE("Unix defined")
+endif (UNIX)
+add_library(javaWrapper include/com_nntu_aes_AesJavaWrapper.h sources/com_nntu_aes_AesJavaWrapper.c)
+
+if (CMAKE_BUILD_TYPE MATCHES DEBUG)
+    target_link_libraries(javaWrapper ${CMAKE_SOURCE_DIR}/debug/lib/libfastAES.a)
+ELSE ()
+    target_link_libraries(javaWrapper ${CMAKE_SOURCE_DIR}/release/lib/libfastAES.a)
+ENDIF ()
