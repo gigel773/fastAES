@@ -9,6 +9,7 @@ if (WIN32)
 endif (WIN32)
 if (UNIX)
     MESSAGE("Unix defined")
+    include_directories($ENV{JNI_INCLUDE_DIRS}/linux)
 endif (UNIX)
 add_library(javaWrapper include/com_nntu_aes_AesJavaWrapper.h sources/com_nntu_aes_AesJavaWrapper.c)
 
