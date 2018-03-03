@@ -1,20 +1,20 @@
-#ifndef FASTAESMODULE_IALGORITHMICTEST_H
-#define FASTAESMODULE_IALGORITHMICTEST_H
+#pragma once
 
-#include "ITest.h"
+#include "test.hpp"
 #include <functional>
-#include <stdlib.h>
-#include <time.h>
+#include <cstdlib>
+#include <ctime>
 
 template<class Ret, class ...Params>
-class IAlgorithmicTest : public ITest {
+class AlgorithmicTestBase : public ITest {
 public:
     using TestFunction = std::function<Ret(Params...)>;
 
-    explicit IAlgorithmicTest(const TestFunction &m_enc_function, const TestFunction &m_dec_function) : m_enc_function(
+    explicit AlgorithmicTestBase(const TestFunction &m_enc_function, const TestFunction &m_dec_function)
+            : m_enc_function(
             std::move(m_enc_function)), m_dec_function(std::move(m_dec_function)) {}
 
-    virtual ~IAlgorithmicTest() = default;
+    virtual ~AlgorithmicTestBase() = default;
 
 protected:
 
@@ -39,5 +39,3 @@ private:
     TestFunction m_enc_function;
     TestFunction m_dec_function;
 };
-
-#endif //FASTAESMODULE_IALGORITHMICTEST_H

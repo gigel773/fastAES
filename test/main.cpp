@@ -1,56 +1,22 @@
-#include <cstdio>
-#include <malloc.h>
-#include <climits>
-#include <x86intrin.h>
+#include <vector>
+#include <functional>
+#include <memory>
+#include "source/performance_tests/encryption_performance_test.hpp"
+#include "source/algorithmic_tests/encryption_algorithmic_test.hpp"
+#include <test_suite.hpp>
 
-extern "C" {
-#include "fastAES.h"
-}
-
-#define SIZE 100000
-#define MESSAGE_SIZE 1048576
+#define AES_TEST_PARAMS int, const signed char *, signed char *, signed char *, int
 
 int main() {
-    auto *message = (signed char *) malloc(sizeof(char) * MESSAGE_SIZE);
-    auto *cipher = (signed char *) malloc(sizeof(char) * MESSAGE_SIZE);
-    signed char key[] = {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'};
-    unsigned long long starttick = 0, endtick = 0, min = ULONG_MAX, minimal = ULONG_MAX;
-    unsigned int stub;
+    auto runner = std::make_shared<TestSuite>();
 
-    printf("Start...\n");
-    printf("Minimal difference %llu, minimal clocks %llu\n", min, minimal);
+    // Registering
+    runner->registerTest<EncryptionAlgorithmicTest, AES_TEST_PARAMS>();
+    runner->registerTest<EncryptionPerformanceTest, AES_TEST_PARAMS>();
 
-    for (int i = 0; i < MESSAGE_SIZE; i++) {
-        message[i] = 'b';
-    }
+    // Testing
+    runner->runAlgorithmicTests();
+    runner->runPerformanceTests();
 
-    for (int i = 0; i < SIZE; i++) {
-        starttick = __rdtscp(&stub);
-        endtick = __rdtscp(&stub);
-        min = min > (endtick - starttick) ? endtick - starttick : min;
-    }
-
-    printf("Ended collecting minimal difference %llu\n", min);
-
-    for (int i = 0; i < SIZE; i++) {
-        starttick = __rdtscp(&stub);
-        encrypt(key, message, cipher, MESSAGE_SIZE);
-        endtick = __rdtscp(&stub);
-        minimal = minimal > (endtick - starttick - min) ? (endtick - starttick - min) : minimal;
-    }
-
-    printf("End encryption with %f CPE...\n", (double) minimal / (double) MESSAGE_SIZE);
-
-    minimal = ULONG_MAX;
-    for (int i = 0; i < SIZE; i++) {
-        starttick = __rdtscp(&stub);
-        decrypt(key, cipher, message, MESSAGE_SIZE);
-        endtick = __rdtscp(&stub);
-        minimal = minimal > (endtick - starttick - min) ? (endtick - starttick - min) : minimal;
-    }
-    printf("End decryption with %f CPE...\n", (double) minimal / (double) MESSAGE_SIZE);
-
-    free(message);
-    free(cipher);
     return 0;
 }
