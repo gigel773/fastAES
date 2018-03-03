@@ -1,8 +1,24 @@
 #ifndef ENCRYPTOR_INTERNAL_H
 #define ENCRYPTOR_INTERNAL_H
 
-void encrypt(signed char *, signed char *, signed char *, int);
+#include "definitions.h"
 
-void decrypt(signed char *, signed char *, signed char *, int);
+/**
+ *
+ * @param key
+ * @param message
+ * @param pDst
+ * @param size
+ */
+status encrypt(signed char *key, signed char *message, signed char *pDst, int size);
+
+/**
+ *
+ * @param key
+ * @param message
+ * @param pDst
+ * @param size
+ */
+status decrypt(signed char *key, signed char *message, signed char *pDst, int size);
 
 #endif //ENCRYPTOR_INTERNAL_H

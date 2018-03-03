@@ -1,7 +1,7 @@
 #include <x86intrin.h>
 #include "EncryptionPerfTest.h"
 
-EncryptionTest::EncryptionTest(signed char *key, TestFunction function)
+EncryptionPerfTest::EncryptionPerfTest(signed char *key, TestFunction function)
         : IPerformanceTest(function),
           m_key(key) {
     m_lengths = std::vector<int>(1024);
@@ -9,7 +9,7 @@ EncryptionTest::EncryptionTest(signed char *key, TestFunction function)
     std::generate(m_lengths.begin(), m_lengths.end(), [] { return i++; });
 }
 
-void EncryptionTest::before() {
+void EncryptionPerfTest::before() {
     m_difference = ULONG_LONG_MAX;
     for (int i = 0; i < MAIN_CYCLE; i++) {
         m_startTick = __rdtscp(&m_stub);
@@ -18,7 +18,7 @@ void EncryptionTest::before() {
     }
 }
 
-void EncryptionTest::start() {
+void EncryptionPerfTest::start() {
     before();
     std::for_each(m_lengths.begin(), m_lengths.end(), [this](int &length) {
         /* Variables */
@@ -30,12 +30,14 @@ void EncryptionTest::start() {
         generate(pMessage, length);
 
         /* Test */
-        m_startTick = __rdtscp(&m_stub);
-        for (int i = 0; i < CYCLE; i++) {
-            test(m_key, pMessage, pDst, length);
+        for (int i = 0; i < MAIN_CYCLE; i++) {
+            m_startTick = __rdtscp(&m_stub);
+            for (int j = 0; j < CYCLE; j++) {
+                test(m_key, pMessage, pDst, length);
+            }
+            m_endTick = __rdtscp(&m_stub) - m_startTick - m_difference;
+            if (min > m_endTick) min = m_endTick;
         }
-        m_endTick = __rdtscp(&m_stub) - m_startTick - m_difference;
-        if (min > m_endTick) min = m_endTick;
 
         /*
          * Here's empty place to write results to file

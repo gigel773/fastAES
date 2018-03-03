@@ -7,10 +7,11 @@
 #include <algorithm>
 #include <functional>
 #include "IPerformanceTest.h"
+#include <Tests.h>
 
-class EncryptionTest : IPerformanceTest<void, signed char *, signed char *, signed char *, int> {
+class EncryptionPerfTest : IPerformanceTest<void, signed char *, signed char *, signed char *, int> {
 public:
-    EncryptionTest(signed char *key, TestFunction function);
+    EncryptionPerfTest(signed char *key, TestFunction function);
 
     void start() override;
 
@@ -22,5 +23,6 @@ private:
     signed char *m_key;
 };
 
+// REG_PERF_TEST(EncryptionPerfTest, encrypt);
 
 #endif //FASTAESMODULE_ENCRYPTIONTEST_H
