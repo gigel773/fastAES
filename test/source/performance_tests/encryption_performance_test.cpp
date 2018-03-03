@@ -1,9 +1,9 @@
 #include <x86intrin.h>
 #include <iostream>
-#include "EncryptionPerfTest.h"
+#include "encryption_performance_test.hpp"
 #include <fstream>
 
-EncryptionPerfTest::EncryptionPerfTest() : IPerformanceTest(encrypt) {
+EncryptionPerformanceTest::EncryptionPerformanceTest() : PerformanceTestBase(encrypt) {
     m_lengths = std::vector<int>(8);
     static int i = 8;
     std::generate(m_lengths.begin(), m_lengths.end(), [] {
@@ -16,7 +16,7 @@ EncryptionPerfTest::EncryptionPerfTest() : IPerformanceTest(encrypt) {
     logs.close();
 }
 
-void EncryptionPerfTest::before() {
+void EncryptionPerformanceTest::before() {
     m_difference = ULONG_LONG_MAX;
     for (int i = 0; i < MAIN_CYCLE; i++) {
         m_startTick = __rdtscp(&m_stub);
@@ -25,7 +25,7 @@ void EncryptionPerfTest::before() {
     }
 }
 
-void EncryptionPerfTest::start() {
+void EncryptionPerformanceTest::start() {
     before();
     std::for_each(m_lengths.begin(), m_lengths.end(), [this](int &length) {
         /* Variables */

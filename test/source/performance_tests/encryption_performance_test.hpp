@@ -1,10 +1,10 @@
 #pragma once
 
-#include "ITest.h"
+#include "test.hpp"
 #include <vector>
 #include <algorithm>
 #include <functional>
-#include "IPerformanceTest.h"
+#include "performance_test_base.hpp"
 
 extern "C" {
 #include <fastAES.h>
@@ -12,9 +12,10 @@ extern "C" {
 
 const std::string PERF_TEST_OUTPUT_FILE_NAME = "./ps_tests_results.csv";
 
-class EncryptionPerfTest : public IPerformanceTest<int, const signed char *, signed char *, signed char *, int> {
+class EncryptionPerformanceTest
+        : public PerformanceTestBase<int, const signed char *, signed char *, signed char *, int> {
 public:
-    EncryptionPerfTest();
+    EncryptionPerformanceTest();
 
     void start() override;
 

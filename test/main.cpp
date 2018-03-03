@@ -1,22 +1,22 @@
 #include <vector>
 #include <functional>
 #include <memory>
-#include "source/performanceTests/EncryptionPerfTest.h"
-#include "source/algorithmicTests/EncryptionAlgTest.h"
-#include <TestRunner.hpp>
+#include "source/performance_tests/encryption_performance_test.hpp"
+#include "source/algorithmic_tests/encryption_algorithmic_test.hpp"
+#include <test_suite.hpp>
 
 #define AES_TEST_PARAMS int, const signed char *, signed char *, signed char *, int
 
 int main() {
-    auto runner = std::make_shared<TestRunner>();
+    auto runner = std::make_shared<TestSuite>();
 
-    /* Registering */
-    runner->registerTest<EncryptionAlgTest, AES_TEST_PARAMS>();
-    runner->registerTest<EncryptionPerfTest, AES_TEST_PARAMS>();
+    // Registering
+    runner->registerTest<EncryptionAlgorithmicTest, AES_TEST_PARAMS>();
+    runner->registerTest<EncryptionPerformanceTest, AES_TEST_PARAMS>();
 
-    /* Testing */
-    runner->runAlgTests();
-    runner->runPerfTests();
+    // Testing
+    runner->runAlgorithmicTests();
+    runner->runPerformanceTests();
 
     return 0;
 }

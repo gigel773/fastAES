@@ -1,17 +1,17 @@
 #pragma once
 
-#include "ITest.h"
+#include "test.hpp"
 #include <climits>
 #include <functional>
 
 template<class Ret, class ...Params>
-class IPerformanceTest : public ITest {
+class PerformanceTestBase : public ITest {
 public:
     using TestFunction = std::function<Ret(Params...)>;
 
-    explicit IPerformanceTest(const TestFunction &m_function) : m_function(std::move(m_function)) {}
+    explicit PerformanceTestBase(const TestFunction &m_function) : m_function(std::move(m_function)) {}
 
-    ~IPerformanceTest() = default;
+    ~PerformanceTestBase() = default;
 
 protected:
     std::vector<int> m_lengths;

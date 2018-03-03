@@ -1,6 +1,6 @@
-#include "EncryptionAlgTest.h"
+#include "encryption_algorithmic_test.hpp"
 
-void EncryptionAlgTest::start() {
+void EncryptionAlgorithmicTest::start() {
     before();
     std::for_each(m_lengths.begin(), m_lengths.end(), [this](int &length) {
 
@@ -36,15 +36,15 @@ void EncryptionAlgTest::start() {
     after();
 }
 
-void EncryptionAlgTest::before() {
+void EncryptionAlgorithmicTest::before() {
 
 }
 
-void EncryptionAlgTest::after() {
+void EncryptionAlgorithmicTest::after() {
 
 }
 
-EncryptionAlgTest::EncryptionAlgTest() : IAlgorithmicTest(encrypt, decrypt) {
+EncryptionAlgorithmicTest::EncryptionAlgorithmicTest() : AlgorithmicTestBase(encrypt, decrypt) {
     m_lengths = std::vector<int>(8);
     static int i = 8;
     std::generate(m_lengths.begin(), m_lengths.end(), [] {
@@ -56,4 +56,4 @@ EncryptionAlgTest::EncryptionAlgTest() : IAlgorithmicTest(encrypt, decrypt) {
 }
 
 
-EncryptionAlgTest::~EncryptionAlgTest() = default;
+EncryptionAlgorithmicTest::~EncryptionAlgorithmicTest() = default;

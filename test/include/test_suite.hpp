@@ -4,31 +4,31 @@
 #include <memory>
 #include <type_traits>
 
-#include "ITest.h"
-#include "IPerformanceTest.h"
-#include "IAlgorithmicTest.h"
+#include "test.hpp"
+#include "performance_test_base.hpp"
+#include "algorithmic_test_base.hpp"
 
-class TestRunner {
+class TestSuite {
 public:
-    TestRunner() = default;
+    TestSuite() = default;
 
     template<class TestClass, class Ret, class ...Params>
     void registerTest() {
         static_assert(std::is_base_of<ITest, TestClass>::value);
-        if (std::is_base_of<IPerformanceTest<Ret, Params...>, TestClass>::value) {
+        if (std::is_base_of<PerformanceTestBase<Ret, Params...>, TestClass>::value) {
             m_performanceTests.push_back(std::make_shared<TestClass>());
-        } else if (std::is_base_of<IAlgorithmicTest<Ret, Params...>, TestClass>::value) {
+        } else if (std::is_base_of<AlgorithmicTestBase<Ret, Params...>, TestClass>::value) {
             m_algorithmicTests.push_back(std::make_shared<TestClass>());
         }
     }
 
-    void runAlgTests() {
+    void runAlgorithmicTests() {
         std::for_each(m_algorithmicTests.begin(), m_algorithmicTests.end(), [](std::shared_ptr<ITest> test) {
             test->start();
         });
     }
 
-    void runPerfTests() {
+    void runPerformanceTests() {
         std::for_each(m_performanceTests.begin(), m_performanceTests.end(), [](std::shared_ptr<ITest> test) {
             test->start();
         });
