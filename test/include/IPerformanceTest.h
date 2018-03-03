@@ -1,5 +1,4 @@
-#ifndef FASTAESMODULE_PERFORMANCETEST_H
-#define FASTAESMODULE_PERFORMANCETEST_H
+#pragma once
 
 #include "ITest.h"
 #include <climits>
@@ -35,5 +34,3 @@ protected:
 private:
     TestFunction m_function;
 };
-
-#endif //FASTAESMODULE_PERFORMANCETEST_H

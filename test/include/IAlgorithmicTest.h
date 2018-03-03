@@ -1,5 +1,4 @@
-#ifndef FASTAESMODULE_IALGORITHMICTEST_H
-#define FASTAESMODULE_IALGORITHMICTEST_H
+#pragma once
 
 #include "ITest.h"
 #include <functional>
@@ -39,5 +38,3 @@ private:
     TestFunction m_enc_function;
     TestFunction m_dec_function;
 };
-
-#endif //FASTAESMODULE_IALGORITHMICTEST_H

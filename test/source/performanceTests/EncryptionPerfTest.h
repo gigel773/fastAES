@@ -1,6 +1,4 @@
-#ifndef FASTAESMODULE_ENCRYPTIONTEST_H
-#define FASTAESMODULE_ENCRYPTIONTEST_H
-
+#pragma once
 
 #include "ITest.h"
 #include <vector>
@@ -27,5 +25,3 @@ private:
 
     const signed char m_key[16] = {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'};
 };
-
-#endif //FASTAESMODULE_ENCRYPTIONTEST_H

@@ -1,6 +1,4 @@
-#ifndef FASTAESMODULE_ENCRYPTIONALGTEST_H
-#define FASTAESMODULE_ENCRYPTIONALGTEST_H
-
+#pragma once
 
 #include <IAlgorithmicTest.h>
 #include <iostream>
@@ -23,6 +21,3 @@ private:
 
     void after() override;
 };
-
-
-#endif //FASTAESMODULE_ENCRYPTIONALGTEST_H

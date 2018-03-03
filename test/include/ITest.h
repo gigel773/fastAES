@@ -1,5 +1,4 @@
-#ifndef FASTAESMODULE_TEST_H
-#define FASTAESMODULE_TEST_H
+#pragma once
 
 class ITest {
 public:
@@ -13,5 +12,3 @@ private:
 protected:
     virtual void generate(signed char *pDst, int length) = 0;
 };
-
-#endif //FASTAESMODULE_TEST_H
