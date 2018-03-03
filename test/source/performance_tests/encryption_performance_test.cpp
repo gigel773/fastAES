@@ -49,7 +49,7 @@ void EncryptionPerformanceTest::start() {
         std::ofstream logs;
         logs.open(PERF_TEST_OUTPUT_FILE_NAME, std::ios::app);
 
-        logs << "encrypt," << length << ',' << (double) min / (double) MAIN_CYCLE / (double) CYCLE << std::endl;
+        logs << "encrypt," << length << ',' << (double) min / (double) length / (double) CYCLE << std::endl;
 
         logs.close();
 
