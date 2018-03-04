@@ -13,7 +13,7 @@
  * @returns SUCCESS if encrypting was successful
  *          BAD_PARAMETERS if some of parameters were bad
  */
-status encrypt(const signed char *key, signed char *message, signed char *pDst, int size);
+status encrypt(const signed char *key, const signed char *message, signed char *pDst, int size);
 
 /**
  * Performs decrypting of ciphered message according to AES algorithm
@@ -25,7 +25,7 @@ status encrypt(const signed char *key, signed char *message, signed char *pDst, 
  * @returns SUCCESS if encrypting was successful
  *          BAD_PARAMETERS if some of parameters were bad
  */
-status decrypt(const signed char *key, signed char *message, signed char *pDst, int size);
+status decrypt(const signed char *key, const signed char *message, signed char *pDst, int size);
 
 /**
  * Performs padding with zeros until specified length
