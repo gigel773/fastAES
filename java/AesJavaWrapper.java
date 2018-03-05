@@ -1,20 +1,33 @@
 package com.nntu.aes;
 
 public class AesJavaWrapper {
-   static {
-      System.loadLibrary("libjavaWrapper");
-   }
+    static {
+        System.loadLibrary("libjavaWrapper");
+    }
 
-   native static String encrypt(String key, String message);
-   native static String decrypt(String key, String cipher);
-   native static String padWithZeros(String source);
+    /**
+     * Performs encrypting of income message according to AES algorithm
+     *
+     * @param key     {@link String}initial key
+     * @param message {@link String}incoming message
+     * @return {@link String} ciphered message
+     */
+    public static native String encrypt(String key, String message);
 
-   public static void main(String[] args) {
-        String key = "aaaaaaaaaaaaaaaa";
-        String message = "bbbbbbbbbbbbbbbb";
-        String cipher = AesJavaWrapper.encrypt(key, message);
-        System.out.println(cipher.length());
-        message = AesJavaWrapper.decrypt(key, cipher);
-        System.out.println(message.length());
-   }
+    /**
+     * Performs decrypting of ciphered message according to AES algorithm
+     *
+     * @param key    {@link String} initial key used for encrypting
+     * @param cipher {@link String} ciphered message
+     * @return {@link String} decrypted message
+     */
+    public static native String decrypt(String key, String cipher);
+
+    /**
+     * Performs padding with zeros until specified length
+     *
+     * @param source {@link String} pointer to source data
+     * @return string {@link String} padded with zeros with nearest length divisible by 16
+     */
+    public static native String padWithZeros(String source);
 }
