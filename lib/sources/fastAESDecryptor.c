@@ -1,4 +1,4 @@
-#include <x86intrin.h>
+#include <xmmintrin.h>
 #include <fastAES.h>
 #include <ownAES.h>
 

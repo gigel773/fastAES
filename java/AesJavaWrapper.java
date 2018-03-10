@@ -1,8 +1,32 @@
 package com.nntu.aes;
 
+import com.oracle.tools.packager.IOUtils;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class AesJavaWrapper {
     static {
-        System.loadLibrary("libjavaWrapper");
+        try {
+            String name = System.mapLibraryName("libjavaWrapper");
+            InputStream in = AesJavaWrapper.class.getResourceAsStream("/" + name);
+            File fileOut = new File(name);
+            OutputStream out = new FileOutputStream(fileOut);
+            byte[] buffer = new byte[1024];
+            while (true) {
+                int bytesRead = in.read(buffer);
+                if (bytesRead == -1)
+                    break;
+                out.write(buffer, 0, bytesRead);
+            }
+            in.close();
+            out.close();
+            System.loadLibrary("libjavaWrapper");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
