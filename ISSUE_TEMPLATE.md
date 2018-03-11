@@ -1,5 +1,8 @@
-#### Description:
-  [Small description]
+#### Small description:
+  Here specify:
+   - language that this problem affects
+   - kind of problem
+   - name of yours
 #### Explanation:
   [Why should it be solved]
 #### Full description:
