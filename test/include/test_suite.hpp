@@ -14,12 +14,11 @@ public:
 
     template<class TestClass, class Ret, class ...Params>
     void registerTest() {
+        static_assert(std::is_base_of<ITest, TestClass>::value);
         if (std::is_base_of<PerformanceTestBase<Ret, Params...>, TestClass>::value) {
             m_performanceTests.push_back(std::make_shared<TestClass>());
         } else if (std::is_base_of<AlgorithmicTestBase<Ret, Params...>, TestClass>::value) {
             m_algorithmicTests.push_back(std::make_shared<TestClass>());
-        } else {
-            return;
         }
     }
 
