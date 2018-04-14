@@ -1,8 +1,7 @@
 language: cpp
 
 compiler:
-  - gcc
-  - clang
+  - gcc-5.3
 
 before_script:
   - mkdir build
