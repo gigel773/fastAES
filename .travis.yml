@@ -1,7 +1,7 @@
 language: cpp
 
 compiler:
-  - gcc-7
+  - gcc-5
 
 before_script:
   - mkdir build
