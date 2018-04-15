@@ -5,9 +5,9 @@ sudo: required
 before_script:
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_CC_COMPILER=gcc
-script:
   - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-7 /usr/bin/gcc
+  - cmake ..
+script:
   - gcc --version
   - make
 addons:
