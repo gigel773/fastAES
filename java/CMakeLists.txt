@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(javaWrapper)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include_directories(include $ENV{JNI_INCLUDE_DIRS} ${CMAKE_SOURCE_DIR}/lib/include)
 if (WIN32)
