@@ -6,7 +6,8 @@ before_script:
   - mkdir build
   - cd build
   - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-7 /usr/bin/gcc
-  - cmake ..
+  - sudo unlink /usr/bin/g++ && sudo ln -s /usr/bin/g++-7 /usr/bin/g++
+  - cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_CC_COMPILER=gcc
 script:
   - gcc --version
   - make
