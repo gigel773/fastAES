@@ -1,3 +1,5 @@
+![Build status](https://travis-ci.org/gigel773/fastEncryption.svg?branch=master)
+
 ## Fast encryption library
 
 This library is created to improve speed of executing crypto algorithms.

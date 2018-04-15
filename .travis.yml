@@ -1,0 +1,22 @@
+language: cpp
+
+sudo: required
+
+before_script:
+  - mkdir release
+  - cd release
+  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-7 /usr/bin/gcc
+  - sudo unlink /usr/bin/g++ && sudo ln -s /usr/bin/g++-7 /usr/bin/g++
+  - export JNI_INCLUDE_DIRS=/usr/lib/jvm/java-9-oracle/include
+  - cmake .. -DCMAKE_CXX_COMPILER=g++ -DCMAKE_CC_COMPILER=gcc
+script:
+  - gcc --version
+  - make
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-7
+    - g++-7
+    - oracle-java9-installer
