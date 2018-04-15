@@ -1,11 +1,11 @@
 language: cpp
 
 compiler:
-  - gcc-5
+  - clang
 
 before_script:
   - mkdir build
   - cd build
-  - cmake .. -DCMAKE_CXX_COMPILER=g++-5
+  - cmake ..
 
 script: make
