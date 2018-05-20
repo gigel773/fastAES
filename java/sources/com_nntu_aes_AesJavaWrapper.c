@@ -1,5 +1,5 @@
 #include <com_nntu_aes_AesJavaWrapper.h>
-#include <fastAES.h>
+#include <fastaes.h>
 #include <stdlib.h>
 
 JNIEXPORT jstring JNICALL

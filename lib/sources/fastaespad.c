@@ -1,4 +1,4 @@
-#include <fastAES.h>
+#include <fastaes.h>
 #include <stdlib.h>
 
 status padWithZeros(const signed char *pSrc, signed char *pDst, srcDstLength lengths) {

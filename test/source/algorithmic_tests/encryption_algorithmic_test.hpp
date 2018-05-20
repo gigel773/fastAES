@@ -4,7 +4,7 @@
 #include <iostream>
 
 extern "C" {
-#include <fastAES.h>
+#include <fastaes.h>
 };
 
 class EncryptionAlgorithmicTest

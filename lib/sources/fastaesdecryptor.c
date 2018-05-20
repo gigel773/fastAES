@@ -1,6 +1,6 @@
 #include <xmmintrin.h>
-#include <fastAES.h>
-#include <ownAES.h>
+#include <fastaes.h>
+#include <ownaes.h>
 
 status decrypt(const signed char *key, const signed char *message, signed char *pDst, int size) {
     /* Validating parameters */

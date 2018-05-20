@@ -1,4 +1,4 @@
-#include <ownAES.h>
+#include <ownaes.h>
 
 static inline __m128i aes_128_key_expansion(__m128i key, __m128i keyGenerated) {
     keyGenerated = _mm_shuffle_epi32(keyGenerated, _MM_SHUFFLE(3, 3, 3, 3));

@@ -6,13 +6,10 @@ set(CMAKE_C_FLAGS "-maes -m64")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include_directories(include sources/utils/include)
-set(SOURCES sources/fastAESDecryptor.c
-        include/fastAES.h
+set(SOURCES sources/fastaesdecryptor.c
         sources/utils/src/owncopy.c
-        sources/utils/include/owns.h
-        include/definitions.h
-        sources/fastAESEncryptor.c
-        sources/utils/include/ownAES.h
-        sources/utils/src/ownAES.c sources/fastAESPad.c)
+        sources/fastaesencryptor.c
+        sources/utils/src/ownaes.c
+       	sources/fastaespad.c)
 
 add_library(fastAES ${SOURCES})

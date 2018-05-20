@@ -7,7 +7,7 @@
 #include "performance_test_base.hpp"
 
 extern "C" {
-#include <fastAES.h>
+#include <fastaes.h>
 };
 
 const std::string PERF_TEST_OUTPUT_FILE_NAME = "./ps_tests_results.csv";

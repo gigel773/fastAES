@@ -1,8 +1,8 @@
-#include <fastAES.h>
+#include <fastaes.h>
 #include <stdlib.h>
 #include <emmintrin.h>
 #include <wmmintrin.h>
-#include <ownAES.h>
+#include <ownaes.h>
 
 status encrypt(const signed char *key, const signed char *message, signed char *pDst, int size) {
     /* Validating parameters */
