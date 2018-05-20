@@ -1,4 +1,4 @@
-![Build status](https://travis-ci.org/gigel773/fastEncryption.svg?branch=master)
+![Build status](https://travis-ci.org/gigel773/fast-encryption.svg?branch=master)
 
 ## Fast encryption library
 
