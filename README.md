@@ -11,4 +11,3 @@ Support of these languages will be provided:
  - Java
  - Python
  - Node.js
- - Go
