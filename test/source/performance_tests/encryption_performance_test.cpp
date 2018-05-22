@@ -1,4 +1,5 @@
-#include <x86intrin.h>
+#include <intrin.h>
+#include <limits.h>
 #include <iostream>
 #include "encryption_performance_test.hpp"
 #include <fstream>
@@ -17,7 +18,7 @@ EncryptionPerformanceTest::EncryptionPerformanceTest() : PerformanceTestBase(enc
 }
 
 void EncryptionPerformanceTest::before() {
-    m_difference = ULONG_LONG_MAX;
+    m_difference = ULLONG_MAX;
     for (int i = 0; i < MAIN_CYCLE; i++) {
         m_startTick = __rdtscp(&m_stub);
         m_endTick = __rdtscp(&m_stub) - m_startTick;
@@ -31,7 +32,7 @@ void EncryptionPerformanceTest::start() {
         /* Variables */
         auto pDst = new signed char[length];
         auto pMessage = new signed char[length];
-        unsigned long long min = ULONG_LONG_MAX;
+        unsigned long long min = ULLONG_MAX;
 
         /* Preparation */
         generate(pMessage, length);

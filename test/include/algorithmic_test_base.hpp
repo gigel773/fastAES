@@ -21,11 +21,11 @@ protected:
     std::vector<int> m_lengths;
 
     virtual long enc_function(Params... params) {
-        m_enc_function(params...);
+        return m_enc_function(params...);
     }
 
     virtual long dec_function(Params... params) {
-        m_dec_function(params...);
+        return m_dec_function(params...);
     }
 
     void generate(signed char *pDst, int length) override {

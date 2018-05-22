@@ -2,6 +2,7 @@
 
 #include <algorithmic_test_base.hpp>
 #include <iostream>
+#include <algorithm>
 
 extern "C" {
 #include <fastaes.h>

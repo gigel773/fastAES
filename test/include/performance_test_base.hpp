@@ -17,7 +17,7 @@ protected:
     std::vector<int> m_lengths;
 
     virtual long test(Params... params) {
-        m_function(params...);
+        return m_function(params...);
     }
 
     void generate(signed char *pDst, int length) override {
